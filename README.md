@@ -20,7 +20,7 @@ Usage
 ``` 
 ``` js
 function myController($scope) {
-  $scope.myModel.data = {
+  var data = {
     labels : ["January","February","March","April","May","June","July"],
     datasets : [
       {
@@ -39,6 +39,8 @@ function myController($scope) {
       }
     ]
   };
+
+  $scope.myModel = {data: data, options: {animation: true}}
 };
 ``` 
 **You can use the attribute "type" to set the type of chart:**
