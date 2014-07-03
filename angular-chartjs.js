@@ -48,7 +48,7 @@ angular.module('ngChart', []).
   			canvas.height = options.height;
 
   			// set the canvas id if attribute is defined
-  			if (attrs.id) canvas.id = options.id;
+  			if (attrs.id) canvas.id = attrs.id;
 
   			// create the chart
   			chart = new Chart(context);
