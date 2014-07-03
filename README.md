@@ -42,7 +42,7 @@ function myController($scope) {
 };
 ``` 
 **You can use the attribute "type" to set the type of chart:**
-``` 
+``` html
 <canvas ng-chart="myChart" type="bar" width="704" height="200"></canvas>
 ```
 
