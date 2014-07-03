@@ -16,11 +16,11 @@ Dependencies
 Usage
 --------
 ``` html
-<canvas ng-chart="myChart" width="704" height="200"></canvas>
+<canvas ng-chart="myModel" width="704" height="200"></canvas>
 ``` 
 ``` js
 function myController($scope) {
-  $scope.myChart.data = {
+  $scope.myModel.data = {
     labels : ["January","February","March","April","May","June","July"],
     datasets : [
       {
@@ -43,7 +43,7 @@ function myController($scope) {
 ``` 
 **You can use the attribute "type" to set the type of chart:**
 ``` html
-<canvas ng-chart="myChart" type="bar" width="704" height="200"></canvas>
+<canvas ng-chart="myModel" type="bar" width="704" height="200"></canvas>
 ```
 
 Contribution and Bug Report
