@@ -20,7 +20,7 @@
 		}
 	</style>
 </head>
-<body class="container" ng-app="myApp" ng-controller="myController">
+<body class="container">
 	<div class="row">
 		<div class="span12">
 			<h1>AngularJS ChartJS</h1>
@@ -83,7 +83,7 @@
 			<h2>In action</h2>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" ng-app="myApp" ng-controller="myController">
 		<div style="width: 600px; height: 420px; margin: auto; text-align: center;">
 			<canvas ng-chart="myModel" id="myCoolChart"></canvas>
 			<div>&nbsp;</div>
