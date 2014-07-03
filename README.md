@@ -57,7 +57,7 @@ Contributors
 --------
  - [Anthony Acuña](http://www.creaworlds.com.mx/)
 
- License
+License
 --------
 MIT, based on Angular Chartjs Directive
 https://github.com/earlonrails/angular-chartjs-directive
