@@ -5,7 +5,9 @@
 *	Copyright 2014, Antony Acuña
 *	Release under the MIT License
 *	https://github.com/creaworlds/angular-chartjs/blob/master/LICENSE
-*	
+*
+*	Based on Angular Chartjs Directive
+*	https://github.com/earlonrails/angular-chartjs-directive
 */
 
 /* It is recommended that this file will minified before serving.	*/
