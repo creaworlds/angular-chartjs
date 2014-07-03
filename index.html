@@ -1,122 +1,288 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>AngularJS-ChartJS</title>
+	<meta name="description" content="angularjs-chartjs">
+	<link href="http://netdna.bootstrapcdn.com/bootswatch/2.3.0/cerulean/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+		#editor {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+		#divActions ul li {
+			display: inline-block;
+		}
+	</style>
+</head>
+<body class="container" ng-app="myApp" ng-controller="myController">
+	<div class="row">
+		<div class="span12">
+			<h1>AngularJS ChartJS</h1>
+			<hr>
+			<p></p>
+		</div>
+	</div>
+	<h2>Usage</h2>
+	<div class="row">
+		<div class="span12">
+			<ol>
+				<li>Include <code>chartjs.js</code>.</li>
+				<li>Include <code>angular-chartjs.js</code>.</li>
+				<li>
+					Add directive
+					<pre><code>&lt;html&gt;
+	&lt;body ng-app=&quot;myApp&quot;&gt;
+		&lt;div ng-controller=&quot;myController&quot;&gt;
+			&lt;canvas ng-chart=&quot;myModel&quot; width=&quot;200&quot; height=&quot;200&quot;&gt;&lt;&#47;canvas&gt;
+		&lt;&#47;div&gt;
+	&lt;&#47;body&gt;
+&lt;&#47;html&gt;</code></pre>
+				</li>
 
-    <title>Angular-chartjs by creaworlds</title>
-  </head>
+				<li>
+					Inject some data and options
+					<pre><code>(function () {
+	var myApp = angular.module(&quot;myApp&quot;, [&quot;ngChart&quot;]);
+	myApp.controller(&quot;myController&quot;, [&quot;$scope&quot;, function ($scope) {
+		var data = {
+			labels: [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, &quot;July&quot;],
+			datasets: [
+				{
+					fillColor: &quot;rgba(220,220,220,0.5)&quot;,
+					strokeColor: &quot;rgba(220,220,220,1)&quot;,
+					pointColor: &quot;rgba(220,220,220,1)&quot;,
+					pointStrokeColor: &quot;#fff&quot;,
+					data: [65, 59, 90, 81, 56, 55, 40]
+				},
+				{
+					fillColor: &quot;rgba(151,187,205,0.5)&quot;,
+					strokeColor: &quot;rgba(151,187,205,1)&quot;,
+					pointColor: &quot;rgba(151,187,205,1)&quot;,
+					pointStrokeColor: &quot;#fff&quot;,
+					data: [28, 48, 40, 19, 96, 27, 100]
+				}
+			]
+		};
+		$scope.myModel = { data: data, options: { animation: true } };
+	}]);
+})();</code>
+					</pre>
+				</li>
+			</ol>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="span12">
+			<h2>In action</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div style="width: 600px; height: 420px; margin: auto; text-align: center;">
+			<canvas ng-chart="myModel" id="myCoolChart"></canvas>
+			<div>&nbsp;</div>
+		</div>
+		<div id="divActions" style="width: 600px; margin: auto; text-align: center;">
+			<ul>
+				<li>
+					<button ng-click="bar()" class="btn btn-success">
+						Bar
+					</button>
+				</li>
+				<li>
+					<button ng-click="radar()" class="btn btn-success">
+						Radar
+					</button>
+				</li>
+				<li>
+					<button ng-click="polarArea()" class="btn btn-success">
+						Polar
+					</button>
+				</li>
+				<li>
+					<button ng-click="pie()" class="btn btn-success">
+						Pie
+					</button>
+				</li>
+				<li>
+					<button ng-click="doughnut()" class="btn btn-success">
+						Doughnut
+					</button>
+				</li>
+				<li>
+					<button ng-click="line()" class="btn btn-success">
+						Line
+					</button>
+				</li>
+				<li>
+					<button ng-click="updateData()" class="btn btn-primary">
+						Update Data
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="span12">
+			<h2>Tag Parameters</h2>
+			<ul>
+				<li><code>type</code> (default: "Line")</li>
+				<li><code>width</code> (default: 600)</li>
+				<li><code>height</code> (default: 400)</li>
+			</ul>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="span12">
+			<h2>Chart Parameters</h2>
+			<ul>
+				<li><code>data</code></li>
+				<li><code>options</code></li>
+				<li><a href="http://www.chartjs.org/docs/" target="_blank">See Chartjs documentation</a></li>
+			</ul>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="span12">
+			<h2>License</h2>
+			<ul>
+				<li>MIT</li>
+				<li>Author: <a href="http://www.creaworlds.com.mx/" target="_blank">Antony Acu&ntilde;a</a> </li>
+				<li>Based on <a href="https://github.com/earlonrails/angular-chartjs-directive" target="_blank">Angular Chart-js Directive</a>	</li>
+			</ul>
+		</div>
+	</div>
+	<hr />
+	<br />
+	<br />
+	<br />
 
-  <body>
-    <header>
-      <div class="inner">
-        <h1>Angular-chartjs</h1>
-        <h2>A Custom AngularJS Directive which allows the use of ChartJS</h2>
-        <a href="https://github.com/creaworlds/angular-chartjs" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
+	<a href="https://github.com/creaworlds/angular-chartjs" target="_blank">
+		<img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub">
+	</a>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
-<a name="angular-chartjs" class="anchor" href="#angular-chartjs"><span class="octicon octicon-link"></span></a>angular-chartjs</h1>
+	<!-- JQuery -->
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<p>A Custom AngularJS Directive which allows the use of ChartJS</p>
+	<!-- BootStrap -->
+	<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-<h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+	<!-- Dependences-->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+	<script src="lib/chart.min.js"></script>
+	<script src="angular-chartjs.js"></script>
 
-<ul>
-<li>Simplify the use of ChartJS on Angular Application</li>
-</ul><h2>
-<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+	<script type="text/javascript">
+		(function () {
+			var myApp = angular.module("myApp", ["ngChart"]);
+			myApp.controller("myController", ["$scope", function ($scope) {
+				$scope.updateData = function () {
+					var chart = angular.element("#myCoolChart").attr("type");
+					switch (chart) {
+						case 'PolarArea':
+							$scope.generatePieData();
+							break;
+						case 'Pie':
+							$scope.generatePieData();
+							break;
+						case 'Doughnut':
+							$scope.generatePieData();
+							break;
+						default:
+							$scope.generateData();
+					}
+				};
 
-<ul>
-<li>AngularJS (<a href="https://www.angularjs.org/">https://www.angularjs.org/</a>)</li>
-<li>ChartJS (<a href="http://www.chartjs.org/">http://www.chartjs.org/</a>)</li>
-</ul><h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+				$scope.generateData = function () {
+					var sevenRandNumbers = function () {
+						var numberArray = [];
+						for (var i = 0; i < 7; i++) {
+							numberArray.push(Math.floor((Math.random() * 100) + 1));
+						}
+						return numberArray;
+					};
+					var data = {
+						labels: ["January", "February", "March", "April", "May", "June", "July"],
+						datasets: [
+						  {
+						  	fillColor: "rgba(220,220,220,0.5)",
+						  	strokeColor: "rgba(220,220,220,1)",
+						  	pointColor: "rgba(220,220,220,1)",
+						  	pointStrokeColor: "#fff",
+						  	data: sevenRandNumbers()
+						  },
+						  {
+						  	fillColor: "rgba(151,187,205,0.5)",
+						  	strokeColor: "rgba(151,187,205,1)",
+						  	pointColor: "rgba(151,187,205,1)",
+						  	pointStrokeColor: "#fff",
+						  	data: sevenRandNumbers()
+						  }
+						]
+					};
+					$scope.myModel = { "data": data, "options": {} };
+				};
 
-<div class="highlight highlight-html"><pre><span class="nt">&lt;canvas</span> <span class="na">ng-chart=</span><span class="s">"myModel"</span> <span class="na">width=</span><span class="s">"704"</span> <span class="na">height=</span><span class="s">"200"</span><span class="nt">&gt;&lt;/canvas&gt;</span>
-</pre></div>
+				$scope.generatePieData = function () {
+					var data = [
+					  {
+					  	value: Math.floor((Math.random() * 100) + 1),
+					  	color: "#F38630"
+					  },
+					  {
+					  	value: Math.floor((Math.random() * 100) + 1),
+					  	color: "#E0E4CC"
+					  },
+					  {
+					  	value: Math.floor((Math.random() * 100) + 1),
+					  	color: "#69D2E7"
+					  }
+					]
+					$scope.myModel = { "data": data, "options": {} };
+				};
 
-<div class="highlight highlight-js"><pre><span class="kd">function</span> <span class="nx">myController</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">labels</span> <span class="o">:</span> <span class="p">[</span><span class="s2">"January"</span><span class="p">,</span><span class="s2">"February"</span><span class="p">,</span><span class="s2">"March"</span><span class="p">,</span><span class="s2">"April"</span><span class="p">,</span><span class="s2">"May"</span><span class="p">,</span><span class="s2">"June"</span><span class="p">,</span><span class="s2">"July"</span><span class="p">],</span>
-    <span class="nx">datasets</span> <span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="nx">fillColor</span> <span class="o">:</span> <span class="s2">"rgba(220,220,220,0.5)"</span><span class="p">,</span>
-        <span class="nx">strokeColor</span> <span class="o">:</span> <span class="s2">"rgba(220,220,220,1)"</span><span class="p">,</span>
-        <span class="nx">pointColor</span> <span class="o">:</span> <span class="s2">"rgba(220,220,220,1)"</span><span class="p">,</span>
-        <span class="nx">pointStrokeColor</span> <span class="o">:</span> <span class="s2">"#fff"</span><span class="p">,</span>
-        <span class="nx">data</span> <span class="o">:</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="mi">55</span><span class="p">,</span><span class="mi">40</span><span class="p">]</span>
-      <span class="p">},</span>
-      <span class="p">{</span>
-        <span class="nx">fillColor</span> <span class="o">:</span> <span class="s2">"rgba(151,187,205,0.5)"</span><span class="p">,</span>
-        <span class="nx">strokeColor</span> <span class="o">:</span> <span class="s2">"rgba(151,187,205,1)"</span><span class="p">,</span>
-        <span class="nx">pointColor</span> <span class="o">:</span> <span class="s2">"rgba(151,187,205,1)"</span><span class="p">,</span>
-        <span class="nx">pointStrokeColor</span> <span class="o">:</span> <span class="s2">"#fff"</span><span class="p">,</span>
-        <span class="nx">data</span> <span class="o">:</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">96</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
-  <span class="p">};</span>
+				$scope.line = function () {
+					angular.element("#myCoolChart").attr("type", "Line");
+					$scope.updateData();
+				};
 
-  <span class="nx">$scope</span><span class="p">.</span><span class="nx">myModel</span> <span class="o">=</span> <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">options</span><span class="o">:</span> <span class="p">{</span><span class="nx">animation</span><span class="o">:</span> <span class="kc">true</span><span class="p">}};</span>
-<span class="p">};</span>
-</pre></div>
+				$scope.bar = function () {
+					angular.element("#myCoolChart").attr("type", "Bar");
+					$scope.updateData();
+				};
 
-<p><strong>You can use the attribute "type" to set the type of chart:</strong></p>
+				$scope.radar = function () {
+					angular.element("#myCoolChart").attr("type", "Radar");
+					$scope.updateData();
+				};
 
-<div class="highlight highlight-html"><pre><span class="nt">&lt;canvas</span> <span class="na">ng-chart=</span><span class="s">"myModel"</span> <span class="na">type=</span><span class="s">"bar"</span> <span class="na">width=</span><span class="s">"704"</span> <span class="na">height=</span><span class="s">"200"</span><span class="nt">&gt;&lt;/canvas&gt;</span>
-</pre></div>
+				$scope.polarArea = function () {
+					angular.element("#myCoolChart").attr("type", "PolarArea");
+					$scope.updateData();
+				};
 
-<h2>
-<a name="contribution-and-bug-report" class="anchor" href="#contribution-and-bug-report"><span class="octicon octicon-link"></span></a>Contribution and Bug Report</h2>
+				$scope.pie = function () {
+					angular.element("#myCoolChart").attr("type", "Pie");
+					$scope.updateData();
+				};
 
-<p>Feel free if you want to contribute. </p>
+				$scope.doughnut = function () {
+					angular.element("#myCoolChart").attr("type", "Doughnut");
+					$scope.updateData();
+				};
 
-<p>Please use the <a href="https://github.com/creaworlds/angular-chartjs/issues">GitHub issue tracker</a> for bug
-reports and feature requests.</p>
-
-<h2>
-<a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h2>
-
-<ul>
-<li><a href="http://www.creaworlds.com.mx/">Anthony Acuña</a></li>
-</ul><h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
-
-<p>MIT, based on Angular Chartjs Directive
-<a href="https://github.com/earlonrails/angular-chartjs-directive">https://github.com/earlonrails/angular-chartjs-directive</a></p>
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/creaworlds/angular-chartjs/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/creaworlds/angular-chartjs/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/creaworlds/angular-chartjs"></a> is maintained by <a href="https://github.com/creaworlds">creaworlds</a>.</p>
-
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
-
-  
-  </body>
+				$scope.generateData();
+			}]);
+		})();
+	</script>
+</body>
 </html>
